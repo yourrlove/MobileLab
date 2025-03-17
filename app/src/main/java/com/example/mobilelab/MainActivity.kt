@@ -1,8 +1,6 @@
 package com.example.mobilelab
 
 import android.content.res.ColorStateList
-import android.graphics.Color
-import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -11,7 +9,6 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.gson.GsonBuilder
@@ -25,37 +22,56 @@ import androidx.core.graphics.toColorInt
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var editTextInput: EditText
     private lateinit var buttonSubmit: Button
     private lateinit var imageSentiment: ImageView
     private lateinit var rootLayout: LinearLayout
+    private lateinit var editTextInput: EditText
+    private lateinit var buttonSwitch: Button  // Button to switch layout
 
     private val positiveRegex = Regex("\\b(good|great|happy|awesome|fantastic|amazing|excellent)\\b", RegexOption.IGNORE_CASE)
     private val negativeRegex = Regex("\\b(bad|sad|unhappy|terrible|worst|hate|depressing)\\b", RegexOption.IGNORE_CASE)
     private val neutralRegex = Regex("\\b(neutral)\\b", RegexOption.IGNORE_CASE)
 
-
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        enableEdgeToEdge()
-//        setContentView(R.layout.activity_main)
-//        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-//            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-//            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-//            insets
-//        }
-//    }
+    private var isFirstLayout = true  // Track current layout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.homework2)
+        enableEdgeToEdge()
+        setContentView(R.layout.homework1)
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
+        }
 
+        // Initialize switch button
+        buttonSwitch = findViewById(R.id.buttonSwitch)
+        buttonSwitch.setOnClickListener {
+            switchLayout()
+        }
+    }
 
+    private fun switchLayout() {
+        if (isFirstLayout) {
+            setContentView(R.layout.homework2) // Switch to homework2.xml
+            isFirstLayout = false
+            setupHomework2Views()
+        } else {
+            setContentView(R.layout.homework1) // Switch to homework1.xml
+            isFirstLayout = true
+        }
+        buttonSwitch = findViewById(R.id.buttonSwitch)
+        buttonSwitch.setOnClickListener {
+            switchLayout()
+        }
+    }
+
+    private fun setupHomework2Views() {
+        // Initialize views in homework2
+        rootLayout = findViewById(R.id.LinerLayout)
         editTextInput = findViewById(R.id.editTextInput)
         buttonSubmit = findViewById(R.id.buttonSubmit)
         imageSentiment = findViewById(R.id.imageSentiment)
-        rootLayout = findViewById(R.id.LinerLayout)
-
         buttonSubmit.setOnClickListener {
             val userInput = editTextInput.text.toString()
             if (userInput.isNotEmpty()) {
@@ -63,6 +79,24 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
+//    override fun onCreate(savedInstanceState: Bundle?) {
+//        super.onCreate(savedInstanceState)
+//        setContentView(R.layout.homework2)
+//
+//
+//        editTextInput = findViewById(R.id.editTextInput)
+//        buttonSubmit = findViewById(R.id.buttonSubmit)
+//        imageSentiment = findViewById(R.id.imageSentiment)
+//        rootLayout = findViewById(R.id.LinerLayout)
+//
+//        buttonSubmit.setOnClickListener {
+//            val userInput = editTextInput.text.toString()
+//            if (userInput.isNotEmpty()) {
+//                analyzeSentiment(userInput)
+//            }
+//        }
+//    }
 
     private fun analyzeSentiment(text: String) {
         val retrofit = Retrofit.Builder()

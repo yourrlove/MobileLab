@@ -15,6 +15,11 @@
         android:padding="16dp"
         android:background="#195e83"> <!-- Background color -->
 
+        <Button
+            android:id="@+id/buttonSwitch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Switch Homework 1"/>
 
         <TextView
             android:id="@+id/textSentiment"
@@ -63,5 +68,6 @@
             app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/buttonSubmit" />
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
