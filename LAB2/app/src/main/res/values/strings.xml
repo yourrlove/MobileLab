@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">LAB2</string>
+    <string name="emotional">Emotional</string>
+    <string name="submit">Submit</string>
+    <string name="enter_text">Enter text...</string>
+    <string name="sentiment">Sentiment</string>
+    <string name="type_your_text_here">Type your text here...</string>
+</resources>

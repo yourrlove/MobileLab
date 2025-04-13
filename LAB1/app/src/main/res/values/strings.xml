@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">MobileLab</string>
+    <string name="emotional">Emotional</string>
+    <string name="submit">Submit</string>
+    <string name="enter_text">Enter text...</string>
+    <string name="sentiment">Sentiment</string>
+    <string name="type_your_text_here">Type your text here...</string>
+    <string name="lunas">This project involves creating a RESTful API for an e-commerce platform. Customers can browse, search, and order products using either Cash on Delivery (COD) or online banking, while admins manage products, process orders, and update order statuses efficiently.</string>
+    <string name="yolo">" This project focuses on developing a RESTful API for an online clothing store. Customers can browse and search products using a semantic \nsearch engine, with the option to place orders via Cash on Delivery (COD) or online banking. Admins can manage products, process orders"</string>
+</resources>
