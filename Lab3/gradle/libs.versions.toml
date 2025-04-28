@@ -1,5 +1,6 @@
 [versions]
 agp = "8.9.0"
+coil = "2.5.0"
 coreKtxVersion = "1.7.0"
 junit = "4.13.2"
 junitVersion = "1.2.1"
@@ -15,8 +16,11 @@ coreKtx = "1.16.0"
 pagingRuntimeKtx = "3.3.6"
 retrofit = "2.9.0"
 roomRuntime = "2.7.1"
+tensorflowLiteTaskText = "0.4.4"
+media3CommonKtx = "1.6.1"
 
 [libraries]
+coil = { module = "io.coil-kt:coil", version.ref = "coil" }
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
 core-ktx-v170 = { module = "androidx.core:core-ktx", version.ref = "coreKtxVersion" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -39,6 +43,9 @@ room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomRun
 room-ktx = { module = "androidx.room:room-ktx", version.ref = "roomRuntime" }
 room-paging = { module = "androidx.room:room-paging", version.ref = "roomRuntime" }
 room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomRuntime" }
+tensorflow-lite-gpu-delegate-plugin = { module = "org.tensorflow:tensorflow-lite-gpu-delegate-plugin", version.ref = "tensorflowLiteTaskText" }
+tensorflow-lite-task-text = { module = "org.tensorflow:tensorflow-lite-task-text", version.ref = "tensorflowLiteTaskText" }
+media3-common-ktx = { group = "androidx.media3", name = "media3-common-ktx", version.ref = "media3CommonKtx" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

@@ -2,9 +2,12 @@ package com.example.lab3.model
 
 import com.google.gson.annotations.SerializedName
 
-data class Article(
+data class Article (
+
+    val id : Int,
+
     @SerializedName("source")
-    val source: String, // store source as JSON string
+    val source: Source, // ✅ object, not String
 
     @SerializedName("author")
     val author: String?,
@@ -26,4 +29,12 @@ data class Article(
 
     @SerializedName("content")
     val content: String?
+)
+
+data class Source(
+    @SerializedName("id")
+    val id: String?,
+
+    @SerializedName("name")
+    val name: String
 )

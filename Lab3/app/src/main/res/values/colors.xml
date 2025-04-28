@@ -16,13 +16,16 @@
   -->
 
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimary">#3F51B5</color> <!-- Keeping your existing primary color -->
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="titleColor">#1F75FE</color>
-    <color name="titleColorAlpha">#551F75FE</color>
-    <color name="greyAlpha">#55999999</color>
-    <color name="separatorBackground">#AAAAAA</color>
-    <color name="separatorText">#FFFFFF</color>
+
+    <!-- Updated for article list -->
+    <color name="titleColor">#000000</color> <!-- Pure black for title -->
+    <color name="descriptionColor">#444444</color> <!-- Dark gray for description -->
+    <color name="metaInfoColor">#888888</color> <!-- Light gray for source and created -->
+    <color name="separatorColor">#DDDDDD</color> <!-- Light gray for the divider -->
+
+    <!-- These may no longer be needed, but keeping if you still use -->
     <color name="tile_stroke">#000000</color>
 </resources>

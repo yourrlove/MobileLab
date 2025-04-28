@@ -27,7 +27,7 @@ import com.example.lab3.data.ArticleRepository
 import com.example.lab3.model.Article
 import kotlinx.coroutines.flow.Flow
 
-private const val ITEMS_PER_PAGE = 50
+private const val ITEMS_PER_PAGE = 25
 
 /**
  * ViewModel for the [ArticleActivity] screen.
@@ -41,9 +41,15 @@ class ArticleViewModel(
      * Stream of immutable states representative of the UI.
      */
     val items: Flow<PagingData<Article>> = Pager(
-        config = PagingConfig(pageSize = ITEMS_PER_PAGE, enablePlaceholders = false),
+        config = PagingConfig(
+            pageSize = ITEMS_PER_PAGE,
+            initialLoadSize = 50,
+            prefetchDistance = 10,
+            enablePlaceholders = false
+        ),
         pagingSourceFactory = { repository.articlePagingSource(
-            query = "Apple"
+            query = "android",
+            apiKey = "a514fa79f45f419fbf2e46049608a2f0"
         ) }
     )
         .flow

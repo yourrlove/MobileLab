@@ -47,7 +47,7 @@ class ArticleActivity : AppCompatActivity() {
         )
 
         val items = viewModel.items
-        val articleAdapter = ArticleAdapter()
+        val articleAdapter = ArticleAdapter(this)
 
         binding.bindAdapter(articleAdapter = articleAdapter)
 
@@ -82,6 +82,6 @@ class ArticleActivity : AppCompatActivity() {
 private fun ActivityArticlesBinding.bindAdapter(articleAdapter: ArticleAdapter) {
     list.adapter = articleAdapter
     list.layoutManager = LinearLayoutManager(list.context)
-    val decoration = DividerItemDecoration(list.context, DividerItemDecoration.VERTICAL)
-    list.addItemDecoration(decoration)
+//    val decoration = DividerItemDecoration(list.context, DividerItemDecoration.VERTICAL)
+//    list.addItemDecoration(decoration)
 }

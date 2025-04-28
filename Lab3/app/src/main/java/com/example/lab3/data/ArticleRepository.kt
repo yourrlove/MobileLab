@@ -26,7 +26,7 @@ class ArticleRepository(
     /**
      * Returns [PagingSource] for [Article]
      */
-    fun articlePagingSource(query: String): PagingSource<Int, Article> {
-        return ArticlePagingSource(service, query)
+    fun articlePagingSource(query: String, apiKey: String): PagingSource<Int, Article> {
+        return ArticlePagingSource(service, query, apiKey )
     }
 }

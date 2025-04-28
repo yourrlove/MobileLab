@@ -39,52 +39,25 @@ private val firstArticleCreatedTime = LocalDateTime.now()
  */
 class ArticlePagingSource(
     private val service: NewsAPIService,
-    private val query: String
+    private val query: String,
+    private val apiKey: String,
 ) : PagingSource<Int, Article>() {
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Article> {
-//        // If params.key is null, it is the first load, so we start loading with STARTING_KEY
-//        val startKey = params.key ?: STARTING_KEY
-//
-//        // We fetch as many articles as hinted to by params.loadSize
-//        val range = startKey.until(startKey + params.loadSize)
-
-//        // Simulate a delay for loads adter the initial load
-//        if (startKey != STARTING_KEY) delay(LOAD_DELAY_MILLIS)
-//        return LoadResult.Page(
-//            data = range.map { number ->
-//                Article(
-//                    id = number,
-//                    title = "Article $number",
-//                    description = "This describes article $number",
-//                    created = firstArticleCreatedTime.minusDays(number.toLong())
-//                )
-//            },
-//            prevKey = when (startKey) {
-//                STARTING_KEY -> null
-//                else -> when (val prevKey = ensureValidKey(key = range.first - params.loadSize)) {
-//                    // We're at the start, there's nothing more to load
-//                    STARTING_KEY -> null
-//                    else -> prevKey
-//                }
-//            },
-//            nextKey = range.last + 1
-//        )
-
         val page = params.key ?: 1
         return try {
             val response = service.searchArticles(
                 query = query,
                 page = page,
-                itemsPerPage = 100
+                pageSize = params.loadSize,
+                apiKey = apiKey
             )
-            Log.d("result", response.items.isEmpty().toString())
-            val gson = Gson()
 
             LoadResult.Page(
-                data = response.items.mapIndexed { index, apiArticle ->
+                data = response.articles.mapIndexed { index, apiArticle ->
                     Article(
-                        source = apiArticle.source, // serialize Source
+                        id = index,
+                        source = apiArticle.source,
                         author = apiArticle.author,
                         title = apiArticle.title,
                         description = apiArticle.description,
@@ -95,10 +68,11 @@ class ArticlePagingSource(
                     )
                 },
                 prevKey = if (page == 1) null else page - 1,
-                nextKey = if (response.items.isEmpty()) null else page + 1
+                nextKey = if (page * params.loadSize < response.totalResults) page + 1 else null
             )
 
         } catch (e: Exception) {
+            Log.d("error", e.message.toString())
             LoadResult.Error(e)
         }
     }
@@ -110,7 +84,7 @@ class ArticlePagingSource(
         val anchorPosition = state.anchorPosition ?: return null
         val article = state.closestItemToPosition(anchorPosition) ?: return null
 
-        return ensureValidKey(key = 10 - (state.config.pageSize / 2))
+        return ensureValidKey(key = article.id - (state.config.pageSize / 2))
     }
 
     /**

@@ -8,11 +8,12 @@ import retrofit2.http.GET;
 import retrofit2.http.Query;
 
 interface NewsAPIService {
-    @GET("v2/everything?sortBy=popularity&apiKey=a514fa79f45f419fbf2e46049608a2f0")
+    @GET("v2/everything")
     suspend fun searchArticles(
-            @Query("q") query: String,
-            @Query("page") page: Int,
-            @Query("pageSize") itemsPerPage: Int
+        @Query("q") query: String,
+        @Query("pageSize") pageSize: Int,
+        @Query("page") page: Int,
+        @Query("apiKey") apiKey: String
     ): RepoArticlesSearchResponse
 
     companion object {
@@ -20,7 +21,7 @@ interface NewsAPIService {
 
         fun create(): NewsAPIService {
             val logger = HttpLoggingInterceptor()
-            logger.level = HttpLoggingInterceptor.Level.BASIC
+            logger.level = HttpLoggingInterceptor.Level.BODY
 
             val client = OkHttpClient.Builder()
                     .addInterceptor(logger)

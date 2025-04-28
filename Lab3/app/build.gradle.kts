@@ -47,6 +47,7 @@ dependencies {
     implementation(libs.activity)
     implementation(libs.constraintlayout)
     implementation(libs.core.ktx)
+    implementation(libs.media3.common.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
@@ -68,4 +69,11 @@ dependencies {
     implementation(libs.room.paging)
     implementation(libs.paging.runtime.ktx)
     kapt(libs.room.compiler)
+
+    // Coil for image loading
+    implementation(libs.coil)
+
+    // TensorFlow Lite
+    implementation(libs.tensorflow.lite.task.text)
+    implementation(libs.tensorflow.lite.gpu.delegate.plugin)
 }
