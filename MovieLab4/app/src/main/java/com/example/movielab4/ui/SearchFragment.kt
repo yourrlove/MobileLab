@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.movielab4.R
 import com.example.movielab4.api.RetrofitClient
 import com.example.movielab4.databinding.FragmentSearchBinding
 import com.example.movielab4.model.MovieResponse
@@ -29,7 +30,15 @@ class SearchFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        adapter = MovieAdapter(emptyList())
+        adapter = MovieAdapter(emptyList()) { movie ->
+            val bundle = Bundle().apply {
+                putSerializable("movie", movie)
+            }
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, MovieDetailFragment::class.java, bundle)
+                .addToBackStack(null)
+                .commit()
+        }
         binding.rvMovies.layoutManager = LinearLayoutManager(requireContext())
         binding.rvMovies.adapter = adapter
 

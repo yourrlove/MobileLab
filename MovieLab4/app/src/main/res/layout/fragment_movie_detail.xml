@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/detail_scroll"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#121212"
+    android:fillViewport="true">
+
+<LinearLayout
+android:id="@+id/detail_container"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:orientation="vertical">
+
+<!-- Backdrop image -->
+<ImageView
+    android:id="@+id/ivBackdrop"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:scaleType="centerCrop" />
+
+<!-- Poster + Titles -->
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="16dp">
+
+    <ImageView
+        android:id="@+id/ivPoster"
+        android:layout_width="100dp"
+        android:layout_height="150dp"
+        android:scaleType="centerCrop" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:paddingStart="16dp">
+
+        <TextView
+            android:id="@+id/tvDetailTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+        android:text="Movie Title" />
+
+        <TextView
+            android:id="@+id/tvDetailSubtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textSize="14sp"
+            android:textColor="#CCCCCC"
+        android:text="Original Title" />
+    </LinearLayout>
+</LinearLayout>
+
+<!-- Overview -->
+<TextView
+    android:id="@+id/tvDetailOverview"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp"
+    android:textSize="16sp"
+    android:textColor="#EEEEEE"
+android:text="Full overview goes here…" />
+</LinearLayout>
+    </androidx.core.widget.NestedScrollView>

@@ -1,6 +1,7 @@
 package com.example.movielab4.model
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class MovieResponse(
     val page: Int,
@@ -24,4 +25,4 @@ data class Movie(
     val video: Boolean,
     @SerializedName("vote_average") val voteAverage: Double,
     @SerializedName("vote_count") val voteCount: Int
-)
+) : Serializable

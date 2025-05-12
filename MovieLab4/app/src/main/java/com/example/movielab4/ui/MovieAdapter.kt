@@ -7,7 +7,10 @@ import com.bumptech.glide.Glide
 import com.example.movielab4.databinding.ItemMovieBinding
 import com.example.movielab4.model.Movie
 
-class MovieAdapter(private var movies: List<Movie>) :
+class MovieAdapter(
+    private var movies: List<Movie>,
+    private val onClick: (Movie) -> Unit
+) :
     RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
 
     fun updateData(newList: List<Movie>) {
@@ -26,6 +29,10 @@ class MovieAdapter(private var movies: List<Movie>) :
             Glide.with(binding.imgPoster)
                 .load(posterUrl)
                 .into(binding.imgPoster)
+
+            binding.root.setOnClickListener {
+                onClick(movie)
+            }
         }
     }
 
